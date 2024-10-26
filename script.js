@@ -1,3 +1,8 @@
+const classScoresInput = document.getElementById("classScores");
+const studentScoreInput = document.getElementById("studentScore");
+const calculateButton = document.getElementById("calculateButton");
+const resultDisplay = document.getElementById("result");
+
 function getAverage(scores) {
     let sum = 0;
   
@@ -5,7 +10,7 @@ function getAverage(scores) {
       sum += score;
     }
   
-    return sum / scores.length;
+    return (sum / scores.length).toFixed(2);
   }
   
   function getGrade(score) {
@@ -38,3 +43,11 @@ function getAverage(scores) {
       
   }
   console.log(studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37));
+
+  calculateButton.addEventListener("click", () => {
+    const classScores = classScoresInput.value.split(",").map(Number);  // Turns the input into an array of numbers
+    const studentScore = Number(studentScoreInput.value); 
+
+    const message = studentMsg(classScores, studentScore);
+  resultDisplay.textContent = message; 
+  });
